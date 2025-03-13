@@ -1,19 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 스크롤 비디오 제어
-    const videos = document.querySelectorAll("[data-scroll-video]");
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.play();
-            } else {
-                entry.target.pause();
-            }
-        });
-    }, { threshold: 0.5 });
-
-    videos.forEach(video => observer.observe(video));
-
-    // 애니메이션 트리거
+    // 애니메이션
     const animatedElements = document.querySelectorAll("[data-animate]");
     const animateObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -24,23 +10,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.2 });
 
     animatedElements.forEach(el => animateObserver.observe(el));
-});
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    // 기존 애니메이션 및 비디오 코드 유지
-
-    // 아코디언 기능
-    const accordionTriggers = document.querySelectorAll(".accordion-trigger");
-    accordionTriggers.forEach(trigger => {
-        trigger.addEventListener("click", () => {
-            const content = trigger.nextElementSibling;
-            const isActive = content.classList.contains("active");
-            // 모든 아코디언 닫기
-            document.querySelectorAll(".accordion-content").forEach(item => item.classList.remove("active"));
-            if (!isActive) {
-                content.classList.add("active");
+    // 부드러운 해시 스크롤
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+                history.pushState(null, null, this.getAttribute("href"));
             }
         });
+    });
+
+    // 페이지 로드 시 해시 처리
+    window.addEventListener("load", () => {
+        if (window.location.hash) {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+        }
     });
 });
