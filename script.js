@@ -25,3 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animatedElements.forEach(el => animateObserver.observe(el));
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 기존 애니메이션 및 비디오 코드 유지
+
+    // 아코디언 기능
+    const accordionTriggers = document.querySelectorAll(".accordion-trigger");
+    accordionTriggers.forEach(trigger => {
+        trigger.addEventListener("click", () => {
+            const content = trigger.nextElementSibling;
+            const isActive = content.classList.contains("active");
+            // 모든 아코디언 닫기
+            document.querySelectorAll(".accordion-content").forEach(item => item.classList.remove("active"));
+            if (!isActive) {
+                content.classList.add("active");
+            }
+        });
+    });
+});
