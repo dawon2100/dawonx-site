@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DawonX</title>
-    <meta name="description" content="Welcome to DawonX - A journey of creativity and innovation.">
+    <title>DawonX | Computational Design</title>
+    <meta name="description" content="Exploring computational design for innovative solutions.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>DawonX</h1>
+        <div class="logo">DawonX</div>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -22,13 +22,31 @@
 
     <main>
         <section class="hero">
-            <h2>Welcome to DawonX</h2>
-            <p>Exploring the synergy of creativity and technology.</p>
+            <video autoplay muted loop playsinline>
+                <source src="assets/hero-video.mp4" type="video/mp4">
+            </video>
+            <div class="hero-content">
+                <h1>Computational Design</h1>
+                <p>Innovating at the intersection of technology and creativity.</p>
+            </div>
+        </section>
+
+        <section id="work" class="work-section">
+            <h2>Work</h2>
+            <div class="project">
+                <video muted playsinline data-scroll-video>
+                    <source src="assets/project1.mp4" type="video/mp4">
+                </video>
+                <h3>Parametric Exploration</h3>
+                <p>A study in algorithmic form generation.</p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 DawonX. All rights reserved.</p>
+        <p>© 2025 DawonX. All rights reserved.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
