@@ -2,50 +2,172 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: #000;
     color: #fff;
+    overflow-x: hidden;
 }
 
 /* 헤더 */
 header {
+    position: fixed;
+    top: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10;
+}
+
+.logo svg {
+    transition: transform 0.3s ease;
+}
+
+.logo:hover svg {
+    transform: scale(1.1);
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 30px;
 }
 
 nav a {
     color: #fff;
     text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ccc;
 }
 
 /* 히어로 섹션 */
 .hero {
+    position: relative;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
 
-.hero h2 {
-    font-size: 4rem;
+.hero h1 {
+    font-size: 5rem;
+    font-weight: 700;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .hero p {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+/* 작업 섹션 */
+.work-section {
+    padding: 120px 40px;
+    text-align: center;
+}
+
+.work-section h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+}
+
+.project {
+    max-width: 900px;
+    margin: 0 auto 80px;
+}
+
+.project video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.project h3 {
+    font-size: 2.2rem;
+    margin: 20px 0 10px;
+}
+
+.project p {
+    font-size: 1.3rem;
+    color: #bbb;
 }
 
 /* 푸터 */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 40px;
+    font-size: 1rem;
+    color: #888;
+}
+
+/* 애니메이션 */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mission 섹션 */
+.mission-section {
+    padding: 120px 40px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mission-section p {
+    font-size: 1.5rem;
+    color: #bbb;
+    line-height: 1.6;
+}
+
+.mission-section a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Contact 섹션 */
+.contact-section {
+    padding: 120px 40px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-section p {
+    font-size: 1.5rem;
+    color: #bbb;
+    margin: 20px 0;
 }
