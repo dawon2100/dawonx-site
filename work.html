@@ -10,76 +10,32 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="30" font-family="Roboto" font-size="30" fill="#fff">DawonX</text>
-            </svg>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="work.html">Work</a></li>
-                <li><a href="mission.html">Mission</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+        <h1 class="logo">DawonX</h1>
+        <div class="menu-toggle" id="menu-toggle">☰</div>
+        <nav class="dropdown-menu" id="dropdown-menu">
+            <a href="work.html">Work</a>
+            <a href="mission.html">Mission</a>
+            <a href="contact.html">Contact</a>
         </nav>
+        <div class="lang-switch">
+            <button id="lang-en" class="lang-btn active">EN</button> /
+            <button id="lang-ko" class="lang-btn">KR</button>
+        </div>
+        <button id="theme-toggle">Toggle Theme</button>
     </header>
 
-    <main>
-        <!-- 비디오 헤더 -->
-        <section class="work-hero">
-            <video autoplay muted loop playsinline class="work-hero-video">
-                <source src="assets/work-hero.mp4" type="video/mp4">
-            </video>
-            <div class="work-hero-content">
-                <h1>Work</h1>
-                <p class="scroll-prompt" aria-hidden="true">Scroll to Explore</p>
+    <main class="work-page">
+        <h2>Featured Projects</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <h3>Parametric Pavilion</h3>
+                <p>Grasshopper-based structural optimization.</p>
             </div>
-        </section>
-
-        <!-- 소개 텍스트 -->
-        <section class="work-intro">
-            <div class="text-offset">
-                <p>We design computational solutions that merge technology and creativity across scales.</p>
+            <div class="project-item">
+                <h3>Algorithmic Patterns</h3>
+                <p>Python generative design.</p>
             </div>
-        </section>
-
-        <!-- 프로젝트 리스트 -->
-        <section class="project-listing">
-            <h2>Featured Projects</h2>
-            <ul class="project-items">
-                <li class="project-item">
-                    <a href="projects/project1.html">
-                        <strong>Parametric Pavilion</strong>
-                        <span class="project-meta">Grasshopper Optimization</span>
-                        <div class="project-image">
-                            <img src="assets/project1-thumb.jpg" alt="Parametric Pavilion Thumbnail" loading="lazy">
-                        </div>
-                    </a>
-                </li>
-                <li class="project-item">
-                    <a href="projects/project2.html">
-                        <strong>Algorithmic Patterns</strong>
-                        <span class="project-meta">Python Generative Design</span>
-                        <div class="project-image">
-                            <img src="assets/project2-thumb.jpg" alt="Algorithmic Patterns Thumbnail" loading="lazy">
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </section>
-
-        <!-- 아코디언 섹션 -->
-        <section class="accordion-section">
-            <h3 class="accordion-trigger">Computational Techniques</h3>
-            <div class="accordion-content">
-                <div class="accordion-item">
-                    <h4>Grasshopper Modeling</h4>
-                    <p>Exploring parametric forms for architectural innovation.</p>
-                    <a href="projects/grasshopper.html">View Details</a>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
     <footer>

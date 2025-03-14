@@ -10,31 +10,23 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="30" font-family="Roboto" font-size="30" fill="#fff">DawonX</text>
-            </svg>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="work.html">Work</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+        <h1 class="logo">DawonX</h1>
+        <div class="menu-toggle" id="menu-toggle">☰</div>
+        <nav class="dropdown-menu" id="dropdown-menu">
+            <a href="work.html">Work</a>
+            <a href="mission.html">Mission</a>
+            <a href="contact.html">Contact</a>
         </nav>
+        <div class="lang-switch">
+            <button id="lang-en" class="lang-btn active">EN</button> /
+            <button id="lang-ko" class="lang-btn">KR</button>
+        </div>
+        <button id="theme-toggle">Toggle Theme</button>
     </header>
 
-    <main>
-        <section class="contact-section" data-animate>
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:dawonx@example.com">dawonx@example.com</a></p>
-            <p>Let’s collaborate on computational design projects!</p>
-            <div class="social-links">
-                <a href="https://github.com/당신의-username" target="_blank" class="social-icon">GitHub</a>
-                <a href="https://linkedin.com/in/당신의-username" target="_blank" class="social-icon">LinkedIn</a>
-            </div>
-        </section>
+    <main class="contact-page">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:dawonx@example.com">dawonx@example.com</a></p>
     </main>
 
     <footer>

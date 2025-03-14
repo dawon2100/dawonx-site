@@ -4,33 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DawonX | Mission</title>
-    <meta name="description" content="Discover the mission behind DawonX's computational design journey.">
+    <meta name="description" content="Discover the mission of DawonX in computational design.">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="logo">
-            <svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="30" font-family="Roboto" font-size="30" fill="#fff">DawonX</text>
-            </svg>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="work.html">Work</a></li>
-                <li><a href="mission.html">Mission</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+        <h1 class="logo">DawonX</h1>
+        <div class="menu-toggle" id="menu-toggle">☰</div>
+        <nav class="dropdown-menu" id="dropdown-menu">
+            <a href="work.html">Work</a>
+            <a href="mission.html">Mission</a>
+            <a href="contact.html">Contact</a>
         </nav>
+        <div class="lang-switch">
+            <button id="lang-en" class="lang-btn active">EN</button> /
+            <button id="lang-ko" class="lang-btn">KR</button>
+        </div>
+        <button id="theme-toggle">Toggle Theme</button>
     </header>
 
-    <main>
-        <section class="mission-section" data-animate>
-            <h2>Our Mission</h2>
-            <p>At DawonX, we aim to redefine design through computational innovation. By leveraging tools like Rhino, Grasshopper, and Python, we create solutions that bridge technology and creativity, fostering a sustainable and interconnected future.</p>
-            <p>We believe in the power of parametric design to solve complex challenges, from architectural optimization to generative art, driving progress in both aesthetics and functionality.</p>
-        </section>
+    <main class="mission-page">
+        <h2>Our Mission</h2>
+        <p>We aim to innovate design through computational tools, creating sustainable solutions.</p>
     </main>
 
     <footer>
