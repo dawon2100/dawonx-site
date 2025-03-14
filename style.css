@@ -5,13 +5,21 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-body.light-mode {
-    background-color: #fff;
+body.light-mode .dropdown-menu {
+    background: #fff;
     color: #000;
 }
 
-body.dark-mode {
-    background-color: #1a1a1a;
+body.dark-mode .dropdown-menu {
+    background: #333;
+    color: #fff;
+}
+
+body.light-mode .dropdown-menu a {
+    color: #000;
+}
+
+body.dark-mode .dropdown-menu a {
     color: #fff;
 }
 
@@ -27,6 +35,20 @@ header {
 .logo {
     font-size: 2rem;
     font-weight: 700;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+body.light-mode .logo {
+    color: #000;
+}
+
+body.dark-mode .logo {
+    color: #fff;
+}
+
+.logo:hover {
+    color: #ccc;
 }
 
 .menu-toggle {
@@ -35,6 +57,7 @@ header {
     cursor: pointer;
 }
 
+/* 메뉴 초기 숨김 */
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -44,6 +67,7 @@ header {
     border: 1px solid #ddd;
     padding: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
 .dropdown-menu a {
@@ -51,6 +75,23 @@ header {
     padding: 5px 10px;
     color: #000;
     text-decoration: none;
+}
+
+.header-right:hover .dropdown-menu {
+    display: block;
+}
+
+/* 모바일 메뉴 토글 */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    .dropdown-menu {
+        display: none;
+    }
+    .dropdown-menu.active {
+        display: block;
+    }
 }
 
 header:hover .dropdown-menu {

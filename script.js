@@ -6,20 +6,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setTheme(isDark) {
         if (isDark) {
-            body.classList.add("dark-mode");
             body.classList.remove("light-mode");
+            body.classList.add("dark-mode");
         } else {
-            body.classList.add("light-mode");
             body.classList.remove("dark-mode");
+            body.classList.add("light-mode");
         }
+        localStorage.setItem("theme", isDark ? "dark" : "light");
     }
 
-    setTheme(prefersDark.matches);
+    // 초기 테마 설정
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        setTheme(savedTheme === "dark");
+    } else {
+        setTheme(prefersDark.matches);
+    }
+
     prefersDark.addEventListener("change", e => setTheme(e.matches));
 
     themeToggle.addEventListener("click", () => {
-        body.classList.toggle("dark-mode");
-        body.classList.toggle("light-mode");
+        const isDark = body.classList.contains("dark-mode");
+        setTheme(!isDark);
+    });
+
+    // 로고 클릭하여 home으로 이동
+    const logo = document.querySelector(".logo");
+    logo.addEventListener("click", () => {
+        window.location.href = "/";
     });
 
     // 언어 전환
@@ -28,26 +42,46 @@ document.addEventListener("DOMContentLoaded", () => {
         en: {
             home: "Welcome to DawonX",
             work: "Featured Projects",
+            project1_title: "Parametric Pavilion",
+            project1_desc: "Grasshopper-based structural optimization.",
+            project2_title: "Algorithmic Patterns",
+            project2_desc: "Python generative design.",
             mission: "Our Mission",
-            contact: "Contact"
+            mission_desc: "We aim to innovate design through computational tools, creating sustainable solutions.",
+            contact: "Contact",
+            contact_email: "Email: <a href='mailto:dawonx@example.com'>dawonx@example.com</a>"
         },
         ko: {
             home: "DawonX에 오신 것을 환영합니다",
             work: "주요 프로젝트",
+            project1_title: "파라메트릭 파빌리온",
+            project1_desc: "Grasshopper 기반 구조 최적화.",
+            project2_title: "알고리즘 패턴",
+            project2_desc: "Python 생성 디자인.",
             mission: "우리의 미션",
-            contact: "연락처"
+            mission_desc: "우리는 컴퓨테이셔널 도구를 통해 디자인을 혁신하여 지속 가능한 솔루션을 만듭니다.",
+            contact: "연락처",
+            contact_email: "이메일: <a href='mailto:dawonx@example.com'>dawonx@example.com</a>"
         }
     };
 
+    function updateLanguage(lang) {
+        document.querySelectorAll("[data-lang]").forEach(el => {
+            const key = el.getAttribute("data-lang");
+            el.innerHTML = langContents[lang][key.replace("-", "_")] || el.innerHTML;
+        });
+        localStorage.setItem("language", lang);
+    }
+
+    const savedLang = localStorage.getItem("language") || "en";
+    updateLanguage(savedLang);
     langButtons.forEach(btn => {
+        btn.classList.toggle("active", btn.id === `lang-${savedLang}`);
         btn.addEventListener("click", () => {
             langButtons.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             const lang = btn.id.split("-")[1];
-            document.querySelector(".homepage h1")?.textContent = langContents[lang].home;
-            document.querySelector(".work-page h2")?.textContent = langContents[lang].work;
-            document.querySelector(".mission-page h2")?.textContent = langContents[lang].mission;
-            document.querySelector(".contact-page h2")?.textContent = langContents[lang].contact;
+            updateLanguage(lang);
         });
     });
 
@@ -62,12 +96,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     updateBackground();
-    setInterval(updateBackground, 60000); // 1분마다 갱신
+    setInterval(updateBackground, 60000);
 
     // 모바일 메뉴 토글
     const menuToggle = document.getElementById("menu-toggle");
     const dropdownMenu = document.getElementById("dropdown-menu");
     menuToggle.addEventListener("click", () => {
-        dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        dropdownMenu.classList.toggle("active");
     });
+
+    // html안보이게
+    if (window.location.pathname.includes(".html") && !window.location.hash) {
+        const cleanPath = window.location.pathname.replace(".html", "");
+        window.history.replaceState({}, document.title, cleanPath);
+    }
 });
