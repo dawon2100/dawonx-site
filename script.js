@@ -1,40 +1,49 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 다크/라이트 모드
-    const themeToggle = document.getElementById("theme-toggle");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-    const body = document.body;
 
-    function setTheme(isDark) {
-        if (isDark) {
-            body.classList.remove("light-mode");
-            body.classList.add("dark-mode");
-        } else {
-            body.classList.remove("dark-mode");
-            body.classList.add("light-mode");
-        }
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-    }
+    const postList = document.getElementById("post-list");
 
-    // 초기 테마 설정
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-        setTheme(savedTheme === "dark");
-    } else {
-        setTheme(prefersDark.matches);
-    }
+    // 블로그 포스트 파일 목록 (GitHub Pages 경로 기준)
+    const posts = [
+        "posts/sample_1.md",
+        "posts/sample_2.md"
+    ];
 
-    prefersDark.addEventListener("change", e => setTheme(e.matches));
+    posts.forEach(postUrl => {
+        fetch(postUrl)
+            .then(response => response.text())
+            .then(data => {
+                // Front Matter와 본문 분리
+                const parts = data.split("---");
+                const frontMatterRaw = parts[1].trim();
+                const content = parts[2].trim();
 
-    themeToggle.addEventListener("click", () => {
-        const isDark = body.classList.contains("dark-mode");
-        setTheme(!isDark);
+                // Front Matter 파싱
+                const frontMatter = {};
+                frontMatterRaw.split("\n").forEach(line => {
+                    const [key, value] = line.split(":").map(part => part.trim());
+                    frontMatter[key] = value;
+                });
+
+                // Markdown을 HTML로 변환
+                const htmlContent = marked.parse(content);
+
+                // 포스트 항목 생성
+                const postDiv = document.createElement("div");
+                postDiv.className = "post-item";
+                postDiv.innerHTML = `
+                    <h3>${frontMatter.title}</h3>
+                    <p class="post-date">${frontMatter.date}</p>
+                    <div class="post-content">${htmlContent}</div>
+                `;
+                postList.appendChild(postDiv);
+            })
+            .catch(error => console.error("Error loading post:", error));
     });
 
-    // 로고 클릭하여 home으로 이동
-    const logo = document.querySelector(".logo");
-    logo.addEventListener("click", () => {
-        window.location.href = "/";
-    });
+
+
+
+    
 
     // 언어 전환
     const langButtons = document.querySelectorAll(".lang-btn");
@@ -85,29 +94,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 배경 이미지 시간에 따라 변경
-    const background = document.querySelector(".background-image");
-    function updateBackground() {
-        const hour = new Date().getHours();
-        if (hour >= 6 && hour < 18) {
-            background.style.backgroundImage = "url('assets/bg-day.jpg')";
-        } else {
-            background.style.backgroundImage = "url('assets/bg-night.jpg')";
-        }
-    }
-    updateBackground();
-    setInterval(updateBackground, 60000);
-
-    // 모바일 메뉴 토글
-    const menuToggle = document.getElementById("menu-toggle");
-    const dropdownMenu = document.getElementById("dropdown-menu");
-    menuToggle.addEventListener("click", () => {
-        dropdownMenu.classList.toggle("active");
-    });
-
-    // html안보이게
-    if (window.location.pathname.includes(".html") && !window.location.hash) {
-        const cleanPath = window.location.pathname.replace(".html", "");
-        window.history.replaceState({}, document.title, cleanPath);
-    }
+ 
 });

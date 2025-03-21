@@ -32,7 +32,10 @@ nav{
 .logo{
     width: 150px;
     font-size: 30px;
+    transition: color 0.3s ease;
 }
+
+
 
 nav ul li{
     display: inline-block;
@@ -47,41 +50,109 @@ nav ul li a{
     position: relative;
 }
 
-nav ul li a::after{
+/* nav ul li a::after{
     content: '';
     width: 0;
     height: 2px;
-    background: #ff004f;
+    background: coral;
     position: absolute;
     left: 0;
     bottom: -6px;
     transition: 0.5s;
-}
-
-nav ul li a:hover::after{
-    width: 100%;
-}
-
-/* nav ul li a:hover{
-    width: 100%;
-    color: yellowgreen;
 } */
 
-.header-text{
-    margin-top: 20%;
-    font-size: 30px;
+/* nav ul li a:hover::after{
+    width: 100%;
+} */
+
+nav ul li a:hover{
+    width: 100%;
+    color: coral;
+}
+
+/* .header-text{
+    margin-top: 25%;
+    font-size: 25px;
+    cursor: default;
+    
 }
 
 .header-text h1{
-    font-size: 60px;
+    font-size: 50px;
     margin-top: 20px;
+    cursor: default;
 }
 
 .header-text h1 span{
     color: coral;
+} */
+
+/* Header Text Animation */
+.header-text {
+    margin-top: 35%;
+    font-size: 25px;
+    cursor: default;
 }
 
-/* ---------------about-------------- */
+.header-text p {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: slideUp 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation-iteration-count: 1;
+}
+
+.header-text h1 {
+    font-size: 3rem;
+    margin-top: 20px;
+    opacity: 0;
+    animation: slideUp 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s forwards;
+    animation-iteration-count: 1;
+}
+
+
+.header-text h1 span {
+    /* 더 완만한 그라데이션을 위해 같은 색상 반복 */
+    background-image: linear-gradient(
+        to right, 
+        coral, #F24535, coral
+    );
+    /* 배경 크기 조정 - 너무 크면 움직임이 끊겨 보일 수 있음 */
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* 느린 애니메이션으로 부드러움 증가 */
+    animation: gradient-flow 3s ease-in-out 0.5s forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+
+/* -------------------slideup animation------------------- */
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* ---------------about section-------------- */
 
 #about{
     padding: 80px 0;
@@ -105,4 +176,56 @@ nav ul li a:hover::after{
 
 .about-col-2{
     flex-basis: 85%;
+}
+
+/* ---------------Footer-------------- */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #080808;
+}
+
+
+
+/* Blog Section */
+#blog {
+    padding: 80px 0;
+    color: antiquewhite;
+}
+
+#blog h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.post-item {
+    margin-bottom: 40px;
+    padding: 40px 50px; /* 상하 30px, 좌우 40px */
+    background: #1a1a1a;
+    border-radius: 8px;
+}
+
+.post-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.post-date {
+    font-size: 1rem;
+    color: #bbb;
+    margin-bottom: 15px;
+}
+
+.post-content {
+    line-height: 1.6;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px 0;
+    display: block;
 }
