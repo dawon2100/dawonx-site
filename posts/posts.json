@@ -1,0 +1,18 @@
+[
+    {
+      "title": "머신러닝 기초",
+      "slug": "machine-learning-basics",
+      "date": "2025-03-22",
+      "category": "ai",
+      "tags": ["머신러닝", "딥러닝"],
+      "path": "/posts/ai/2025-03-22-machine-learning-basics.md"
+    },
+    {
+      "title": "반응형 웹디자인 원칙",
+      "slug": "responsive-web-design-principles",
+      "date": "2025-03-20",
+      "category": "design",
+      "tags": ["CSS", "반응형"],
+      "path": "/posts/design/2025-03-20-responsive-web-design-principles.md"
+    }
+  ]

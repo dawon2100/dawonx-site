@@ -1,44 +1,70 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const postList = document.getElementById("post-list");
+  
+  fetch('/posts/posts.json')
+    .then(response => response.json())
+    .then(posts => {
+      // 날짜순 정렬 (최신순)
+      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      
+      // 포스트 목록 생성
+      posts.forEach(post => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `blog.html?post=${post.path}`;
+        a.textContent = post.title;
+        li.appendChild(a);
+        
+        // 카테고리 또는 날짜 표시 (선택사항)
+        const meta = document.createElement('span');
+        meta.textContent = ` (${post.category} - ${post.date})`;
+        li.appendChild(meta);
+        
+        postList.appendChild(li);
+      });
+    })
+    .catch(error => console.error('포스트 로딩 중 오류:', error));
 
-    // 블로그 포스트 파일 목록 (GitHub Pages 경로 기준)
-    const posts = [
-        "posts/sample_1.md",
-        "posts/sample_2.md"
-    ];
+    // const postList = document.getElementById("post-list");
 
-    posts.forEach(postUrl => {
-        fetch(postUrl)
-            .then(response => response.text())
-            .then(data => {
-                // Front Matter와 본문 분리
-                const parts = data.split("---");
-                const frontMatterRaw = parts[1].trim();
-                const content = parts[2].trim();
+    // // 블로그 포스트 파일 목록 (GitHub Pages 경로 기준)
+    // const posts = [
+    //     "posts/sample_1.md",
+    //     "posts/sample_2.md"
+    // ];
 
-                // Front Matter 파싱
-                const frontMatter = {};
-                frontMatterRaw.split("\n").forEach(line => {
-                    const [key, value] = line.split(":").map(part => part.trim());
-                    frontMatter[key] = value;
-                });
+    // posts.forEach(postUrl => {
+    //     fetch(postUrl)
+    //         .then(response => response.text())
+    //         .then(data => {
+    //             // Front Matter와 본문 분리
+    //             const parts = data.split("---");
+    //             const frontMatterRaw = parts[1].trim();
+    //             const content = parts[2].trim();
 
-                // Markdown을 HTML로 변환
-                const htmlContent = marked.parse(content);
+    //             // Front Matter 파싱
+    //             const frontMatter = {};
+    //             frontMatterRaw.split("\n").forEach(line => {
+    //                 const [key, value] = line.split(":").map(part => part.trim());
+    //                 frontMatter[key] = value;
+    //             });
 
-                // 포스트 항목 생성
-                const postDiv = document.createElement("div");
-                postDiv.className = "post-item";
-                postDiv.innerHTML = `
-                    <h3>${frontMatter.title}</h3>
-                    <p class="post-date">${frontMatter.date}</p>
-                    <div class="post-content">${htmlContent}</div>
-                `;
-                postList.appendChild(postDiv);
-            })
-            .catch(error => console.error("Error loading post:", error));
-    });
+    //             // Markdown을 HTML로 변환
+    //             const htmlContent = marked.parse(content);
+
+    //             // 포스트 항목 생성
+    //             const postDiv = document.createElement("div");
+    //             postDiv.className = "post-item";
+    //             postDiv.innerHTML = `
+    //                 <h3>${frontMatter.title}</h3>
+    //                 <p class="post-date">${frontMatter.date}</p>
+    //                 <div class="post-content">${htmlContent}</div>
+    //             `;
+    //             postList.appendChild(postDiv);
+    //         })
+    //         .catch(error => console.error("Error loading post:", error));
+    // });
 
 
 
