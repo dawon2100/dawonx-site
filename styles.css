@@ -229,3 +229,187 @@ footer {
     margin: 20px 0;
     display: block;
 }
+
+
+/* 블로그 스타일 확장 */
+
+/* 포스트 그리드 레이아웃 */
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* 포스트 카드 스타일링 */
+.post-item {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.post-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.post-date {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-bottom: 15px;
+}
+
+.post-preview {
+    margin: 15px 0;
+    color: #ccc;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.read-more-btn {
+    background: transparent;
+    border: 1px solid coral;
+    color: coral;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 14px;
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.read-more-btn:hover {
+    background-color: coral;
+    color: #080808;
+}
+
+/* 단일 포스트 스타일링 */
+.single-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#back-to-list {
+    background: transparent;
+    border: none;
+    color: coral;
+    padding: 10px 0;
+    margin-bottom: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+#back-to-list:hover {
+    transform: translateX(-5px);
+}
+
+.post-content {
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.post-content h1 {
+    font-size: 2.5rem;
+    margin: 1em 0 0.5em;
+    color: #fff;
+}
+
+.post-content h2 {
+    font-size: 1.8rem;
+    margin: 1.5em 0 0.8em;
+    color: #fff;
+}
+
+.post-content h3,
+.post-content h4 {
+    font-size: 1.3rem;
+    margin: 1.2em 0 0.6em;
+    color: #eee;
+}
+
+.post-content p {
+    margin-bottom: 1.2em;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5em 0;
+    display: block;
+}
+
+.post-content blockquote {
+    border-left: 4px solid coral;
+    padding-left: 20px;
+    margin: 1.5em 0;
+    color: #bbb;
+    font-style: italic;
+}
+
+.post-content code {
+    background: #2a2a2a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.post-content pre {
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5em 0;
+}
+
+.post-content pre code {
+    background: transparent;
+    padding: 0;
+}
+
+/* 에러 메시지 스타일링 */
+.error-message {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.error-message h3 {
+    color: coral;
+    margin-bottom: 20px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .post-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .single-post {
+        padding: 10px;
+    }
+    
+    .post-content h1 {
+        font-size: 2rem;
+    }
+    
+    .post-content h2 {
+        font-size: 1.5rem;
+    }
+}
